@@ -1,0 +1,6 @@
+
+<app-home *ngIf="pageNumber==0" (changeHome)="onChange()"></app-home>
+<app-rights-reading *ngIf="pageNumber==1" (changeRights)="onChange()"></app-rights-reading>
+<app-social-status *ngIf="pageNumber==2" (changeSocialStatus)="onChange()"></app-social-status>
+<app-final-page *ngIf="pageNumber==3" ></app-final-page>
+

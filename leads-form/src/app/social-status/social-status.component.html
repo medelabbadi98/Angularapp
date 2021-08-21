@@ -1,0 +1,84 @@
+<style>
+    html {box-sizing : border-box;
+        padding : 50px;
+    }
+    body{
+        max-width: 500px;
+        margin : auto;
+    }
+    div{
+        margin: 10px;
+    }
+    .title {
+color: rgb(255, 255, 255); font-size: 16px; line-height: 16px; padding: 6px; border-radius: 10px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+.myButton:hover {
+background: #1C6EA4; }
+.myButton:active {
+background: #144E75; }
+
+</style>
+<body>
+<form #f="ngForm" >
+<div class="form-group">
+    <label for="" class = "title">Quel est votre nom complet?</label>
+    <input required [(ngModel)] = "name" #fullName = "ngModel" name = "full-name" type="text" class="form-control" (keyup.enter)="onKeyup(name)" 
+    placeholder="Jean Dupont">
+    <div class="alert alert-danger" *ngIf="fullName.touched && !fullName.valid"> Ce champs est requis</div>
+</div>
+<div class="form-group">
+    <label for="" class = "title">Quel est votre numéro de téléphone?</label>
+    <input required [(ngModel)] = "phoneNumber" #numberPhone="ngModel" name="phone-number" id="name" type="text" class="form-control" (keyup.enter)="onKeyup(phoneNumber)"
+    placeholder="0X XX XX XX">
+    <div class="alert alert-danger" *ngIf="numberPhone.touched && !numberPhone.valid"> Ce champs est requis</div>
+</div>
+<div class="form-group">
+    <label for="" class = "title">Quel est votre adresse mail?</label>
+    <input [(ngModel)] = "email" name="email-adress" type="text" class="form-control" (keyup.enter)="onKeyup(email)" 
+    placeholder="jean.dupont@gmail.com">
+</div>
+
+<div class="form-group">
+    <label for="" class="title">Vous êtes actuellement :</label>
+    <select [(ngModel)]="socialStatus" name="socialStatus" #status = "ngModel"
+    class="form-control" id="power" required
+    (click)="onLog(socialStatus)">
+      <option *ngFor="let choice of choices" [value]="choice" >{{choice}}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="status.touched && !status.valid"> Ce champs est requis</div>
+  </div>
+
+
+
+
+
+<label for="choice" class="title" > Quelle(s) formation vous intéresse(nt)?</label>
+<div *ngFor = "let choice of checkboxDataList"  class="form-check">
+    <br>
+    <input class="form-check-input" type="checkbox" 
+    [(ngModel)]="choice.isChecked" 
+    name="choice.id"
+    (change)="fetchSelectedItems();onLog(formationChoices)"
+    
+    
+    >
+    <label class="form-check-label" [for]="choice">
+       {{choice.label}}
+   </label>
+</div>
+<div id="click-button" class="text-center">
+    <button type="button" class="btn btn-info btn-lg"  [disabled]="!f.valid" (click)="createPost();onClick()"
+    >SOUMETTRE LE FORMULAIRE</button>
+</div>
+</form>
+
+
+
+
+
+
+
+
+</body>
+
+
+
